@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!--<div class="signup-logo">
+    <img src="assets/img/appicon.svg" alt="Ionic Logo">
+  </div>-->
+
+  <div class="signup-form">
+    <form #signupForm="ngForm" novalidate>
+      <!--<ion-input
+        label="Name"
+        labelPlacement="stacked"
+        fill="solid"
+        [(ngModel)]="signup.fullname"
+        name="name"
+        type="text"
+        #fullname="ngModel"
+        errorText="Name is required"
+        required>
+      </ion-input>
+      <ion-input
+      label="Number"
+      labelPlacement="stacked"
+      fill="solid"
+      [(ngModel)]="signup.mobile"
+      name="number"
+      type="text"
+      #mobile="ngModel"
+      errorText="Number is required"
+      required>
+    </ion-input>
+    <ion-input
+      label="Email"
+      labelPlacement="stacked"
+      fill="solid"
+      [(ngModel)]="signup.email"
+      name="email"
+      type="text"
+      #email="ngModel"
+      >
+    </ion-input>-->
+      <ion-input
+        label="Username"
+        labelPlacement="stacked"
+        fill="solid"
+        [(ngModel)]="signup.user_name"
+        name="username"
+        type="text"
+        #username="ngModel"
+        errorText="Username is required"
+        required>
+      </ion-input>
+      <ion-input
+        label="Password"
+        labelPlacement="stacked"
+        fill="solid"
+        [(ngModel)]="signup.password"
+        name="password"
+        type="password"
+        #password="ngModel"
+        errorText="Password is required"
+        required>
+      </ion-input>
+
+      <div class="ion-padding">
+        <ion-button (click)="onSignup(signupForm)" type="submit" expand="block">Create</ion-button>
+      </div>
+    </form>
+  </div>
+
+</ion-content>

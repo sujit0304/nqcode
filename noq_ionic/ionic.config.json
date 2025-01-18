@@ -1,0 +1,7 @@
+{
+  "name": "NOQ",
+  "type": "angular",
+  "integrations": {
+    "capacitor": {}
+  }
+}
