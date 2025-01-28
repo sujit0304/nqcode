@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</ion-button>
+    </ion-buttons>
+  </ion-toolbar>                                                                                                           
+</ion-header>
+
+<ion-content fullscreen="true">
+  <div class="slide-container">
+    <section class="slide">
+      <img src="assets/img/slider/s1.jpg" class="slide-image" />
+      
+    </section>
+
+    <section class="slide">
+      <img src="assets/img/slider/s2.jpg" class="slide-image" />
+    </section>
+
+    <section class="slide">
+      <img src="assets/img/slider/s2.jpg" class="slide-image" />
+    
+    </section>
+
+    <section class="slide">
+      <h2 class="slide-title">Ready to Login?</h2>
+      <ion-button fill="clear" (click)="startApp()">
+        Continue
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </section>
+  </div>
+</ion-content>
