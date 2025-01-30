@@ -1,10 +1,12 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, IonList, IonRouterOutlet, LoadingController, ModalController, ToastController, Config } from '@ionic/angular';
-
+import { Platform } from '@ionic/angular';
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
+//import { Geolocation } from '@ionic-native/geolocation/ngx';
+//import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 
 @Component({
   selector: 'page-schedule',
@@ -24,8 +26,11 @@ export class SchedulePage implements OnInit {
   groups: any = [];
   confDate: string;
   showSearchbar: boolean;
+  address: string;
+  isBrowser: boolean;
 
   constructor(
+    private platform: Platform,
     public alertCtrl: AlertController,
     public confData: ConferenceData,
     public loadingCtrl: LoadingController,
@@ -34,15 +39,82 @@ export class SchedulePage implements OnInit {
     public routerOutlet: IonRouterOutlet,
     public toastCtrl: ToastController,
     public user: UserData,
-    public config: Config
-  ) { }
+    public config: Config,//private geolocation: Geolocation,
+    //private nativeGeocoder: NativeGeocoder
+  ) { 
+    this.isBrowser = !this.platform.is('cordova') && !this.platform.is('capacitor');
+  }
 
   ngOnInit() {
     this.updateSchedule();
 
     this.ios = this.config.get('mode') === 'ios';
+    this.fetchLocation();
+   
   }
+async fetchLocation()
+{
+ // const Location = await Geolocation.getCurrentPosition();
+  //console.log("location ",Location);
+  /*try {
+    if (this.isBrowser) {
+      // Use browser's Geolocation API
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          console.log('Browser Latitude:', latitude, 'Longitude:', longitude);
+          this.reverseGeocodeBrowser(latitude, longitude); // Simulate reverse geocoding
+        },
+        (error) => console.error('Error getting location', error)
+      );
+    } else {
+      // Use Native Geolocation Plugin
+      const position = await this.geolocation.getCurrentPosition();
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      console.log('Device Latitude:', latitude, 'Longitude:', longitude);
+      this.reverseGeocodeDevice(latitude, longitude);
+    }
+  } catch (error) {
+    console.error('Error getting location', error);
+  }
+}
 
+reverseGeocodeDevice(latitude: number, longitude: number) {
+  const options: NativeGeocoderOptions = {
+    useLocale: true,
+    maxResults: 1
+  };
+
+  this.nativeGeocoder.reverseGeocode(latitude, longitude, options)
+    .then((result: NativeGeocoderResult[]) => {
+      this.address = this.formatAddress(result[0]);
+      console.log('Device Address:', this.address);
+    })
+    .catch((error: any) => {
+      console.error('Error in reverse geocoding', error);
+    });
+}
+
+reverseGeocodeBrowser(latitude: number, longitude: number) {
+  // Mocking the address for browser environment
+  this.address = `Latitude: ${latitude}, Longitude: ${longitude} (Browser Mock Address)`;
+  console.log('Browser Address:', this.address);
+}
+
+formatAddress(result: NativeGeocoderResult): string {
+  const parts = [
+    result.subThoroughfare,
+    result.thoroughfare,
+    result.locality,
+    result.administrativeArea,
+    result.postalCode,
+    result.countryName
+  ];
+  return parts.filter(part => part).join(', ');
+}*/
+}
   updateSchedule() {
     // Close any open sliding items when the schedule updates
     if (this.scheduleList) {

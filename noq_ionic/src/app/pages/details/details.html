@@ -1,0 +1,94 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons *ngIf="!showSearchbar" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+   
+    <ion-title *ngIf="!ios && !showSearchbar">Details</ion-title>
+    <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText" (ionInput)="updateSchedule()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content fullscreen="true">
+  <div class="slide-container">
+    <section class="slide">
+      <img src="assets/img/slider/slider.jpg" class="slide-image" />
+    </section>
+    <section class="slide">
+      <img src="assets/img/slider/slider1.jpg" class="slide-image" />
+    </section>
+  </div>
+  <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card class="speaker-card">
+          <ion-card-header>
+            <ion-item class="item-img" >
+              <ion-avatar slot="start">
+                <img src="assets/img/salon/erich.jpg">
+                <div style="float: left;font-size: 14px;position: absolute;bottom: 11px;left: 6px; color: white;"><strong>350 M </strong></div>
+                <div style="float: right; position: absolute;bottom: 13px;right: 5px;"  class="star-rating">
+                  <ion-icon 
+                    *ngFor="let star of stars; let i = index" 
+                    [name]="i < rating ? 'star' : 'star-outline'" 
+                    (click)="setRating(i + 1)">
+                  </ion-icon>
+                  <span style="font-size: 14px;color: white;"><strong>(4.9)</strong></span>
+                </div>
+              </ion-avatar>
+              
+            </ion-item>
+          </ion-card-header>
+          <ion-row>
+            <ion-col size="10">
+              <span style="font-size: 16px;font-weight: bold;">Shahina Hair Beauty & Nails</span>
+            </ion-col>
+            <ion-col>
+              <span style="font-size: 16px;font-weight: bold; display: inline-flex;" >3&nbsp;<img src="assets/img/chair25.png" /></span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span style="font-size: 14px;">Gokuldham Market Goregaon East</span>
+            </ion-col>
+          </ion-row>
+          <hr style="border-width: 1px;">
+          <ion-row>
+            <ion-col style="text-align: center;"> <span style="font-size: 16px;font-weight: bold;">Serveices</span></ion-col>
+          </ion-row>    
+          
+          <ion-row>
+            <ion-col size="8" style="text-align: left; margin-left: 5px;"> 
+              <span style="font-size: 14px;font-weight: bold;">Hair Cutting</span>
+            </ion-col>
+            <ion-col style="text-align: right; margin-right: 5px;"> 
+              <span style="font-size: 14px;font-weight: bold;">RS. 110</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="8" style="text-align: left; margin-left: 5px;"> 
+              <span style="font-size: 14px;font-weight: bold;">Shawing</span>
+            </ion-col>
+            <ion-col style="text-align: right; margin-right: 5px;"> 
+              <span style="font-size: 14px;font-weight: bold;">RS. 80</span>
+            </ion-col>
+          </ion-row> 
+          <ion-row>
+            <ion-col size="8" style="text-align: left; margin-left: 5px;"> 
+              <span style="font-size: 14px;font-weight: bold;">Massages</span>
+            </ion-col>
+            <ion-col style="text-align: right; margin-right: 5px;"> 
+              <span style="font-size: 14px;font-weight: bold;">RS. 250</span>
+            </ion-col>
+          </ion-row>  
+          <ion-row>
+            <ion-col size="4"></ion-col>
+            <ion-col size="4"> 
+              <ion-button (click)="BookNow()" type="submit" expand="block">Book Now</ion-button>
+            </ion-col>
+            <ion-col size="4"></ion-col>
+          </ion-row>     
+         </ion-card>
+      </ion-col>
+    </ion-row>
+    
+ </ion-content>

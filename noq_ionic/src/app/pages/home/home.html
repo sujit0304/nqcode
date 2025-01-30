@@ -1,0 +1,225 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons *ngIf="!showSearchbar" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+   <!-- <ion-segment *ngIf="ios" [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Favorites
+      </ion-segment-button>
+    </ion-segment>-->
+    <ion-title *ngIf="!ios && !showSearchbar">Home</ion-title>
+    <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText" (ionInput)="updateSchedule()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!ios && !showSearchbar" (click)="showSearchbar = true">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+      <!--<ion-button *ngIf="!showSearchbar" (click)="presentFilter()">
+        <span *ngIf="ios">Filter</span>
+        <span *ngIf="!ios">
+          <ion-icon slot="icon-only" name="options"></ion-icon>
+        </span>
+      </ion-button>-->
+    </ion-buttons>
+  </ion-toolbar>
+  <!--<ion-toolbar *ngIf="!ios">
+    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Favorites
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>-->
+</ion-header>
+
+<ion-content fullscreen="true">
+  <div class="slide-container">
+    <section class="slide">
+      <img src="assets/img/slider/slider.jpg" class="slide-image" />
+    </section>
+    <section class="slide">
+      <img src="assets/img/slider/slider1.jpg" class="slide-image" />
+    </section>
+  </div>
+ 
+    <ion-item>
+      <ion-label>Service Category</ion-label>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span>Male</span>
+        <ion-toggle aria-label="Gender toggle" color="primary" [checked]="isFemale" (ionChange)="onToggleChange($event)"></ion-toggle>
+        <span>Female</span>
+      </div>
+    </ion-item>
+    
+    <ion-list style="padding-top: 0px;padding-bottom: 0px;">
+      <ion-row class="scroll">
+        <ion-col style="padding: 0px 0px 0px 5px;">
+          <ion-button size="small" class="head_button">
+            <img src="assets/img/hair-cut-tool25.png" class="slide-image" slot="start"/>
+              &nbsp;<span style="color: white;font-weight: bold;">Hair Cut</span>
+          </ion-button>
+        </ion-col>
+        <ion-col style="padding: 0px 0px 0px 0px;">
+          <ion-button size="small"  class="head_button">
+            <img src="assets/img/hair-dye25.png" class="slide-image" slot="start"/>
+           &nbsp;<span style="color: white;font-weight: bold;">Hair Color</span>
+            </ion-button>
+        </ion-col>
+        <ion-col style="padding: 0px 0px 0px 0px;">
+          <ion-button size="small"  class="head_button">
+            <img src="assets/img/shaving-brush25.png" class="slide-image" slot="start"/>
+            &nbsp;<span style="color: white;font-weight: bold;">Shaving</span>
+            </ion-button>
+        </ion-col>
+        <ion-col style="padding: 0px 0px 0px 0px;">
+          <ion-button size="small"  class="head_button">
+            <img src="assets/img/person25.png" class="slide-image" slot="start"/>
+            &nbsp;<span style="color: white;font-weight: bold;">Facials</span>
+            </ion-button>
+        </ion-col>
+        <ion-col style="padding: 0px 0px 0px 0px;">
+          <ion-button size="small"  class="head_button">
+            <img src="assets/img/facial-massage25.png" class="slide-image" slot="start"/>
+            &nbsp;<span style="color: white;font-weight: bold;">Massages</span>
+            </ion-button>
+        </ion-col>
+        <ion-col style="padding: 0px 5px 0px 0px;">
+          <ion-button size="small"  class="head_button">
+            <img src="assets/img/add-to-cart-25.png" class="slide-image" slot="start"/>
+            &nbsp; <span style="color: white;font-weight: bold;">Shop</span>
+            </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card class="speaker-card" (click)="details();">
+          <ion-card-header>
+            <ion-item class="item-img" >
+              <ion-avatar slot="start">
+                <img src="assets/img/salon/erich.jpg">
+              </ion-avatar>
+              <ion-label>
+                <h2>Shahina Hair Beauty & Nails</h2>
+                <p>Gokuldham Market Goregaon East </p>
+                <div style="float: left;font-size: 12px;">350 M </div><div style="float: right;"  class="star-rating">
+                  <ion-icon 
+                    *ngFor="let star of stars; let i = index" 
+                    [name]="i < rating ? 'star' : 'star-outline'" 
+                    (click)="setRating(i + 1)">
+                  </ion-icon>
+                  <span style="font-size: 12px;">(4.9)</span>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card class="speaker-card">
+          <ion-card-header>
+            <ion-item class="item-img" >
+              <ion-avatar slot="start">
+                <img src="assets/img/salon/harshita.jpg">
+              </ion-avatar>
+              <ion-label>
+                <h2>Harshita Unisex Salon</h2>
+                <p>Pimparipada Malad East</p>
+                <div style="float: left;font-size: 12px;">500 M </div><div style="float: right;"  class="star-rating">
+                  <ion-icon 
+                    *ngFor="let star of stars; let i = index" 
+                    [name]="i < rating ? 'star' : 'star-outline'" 
+                    (click)="setRating(i + 1)">
+                  </ion-icon>
+                  <span style="font-size: 12px;">(5.0)</span>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card class="speaker-card">
+          <ion-card-header>
+            <ion-item class="item-img" >
+              <ion-avatar slot="start">
+                <img src="assets/img/salon/jbn.jpg">
+              </ion-avatar>
+              <ion-label>
+                <h2>JBN UNISEX SALON</h2>
+                <p>Kanyapadha Goregaon East</p>
+                <div style="float: left;font-size: 12px;">100 M </div><div style="float: right;"  class="star-rating">
+                  <ion-icon 
+                    *ngFor="let star of stars; let i = index" 
+                    [name]="i < rating ? 'star' : 'star-outline'" 
+                    (click)="setRating(i + 1)">
+                  </ion-icon>
+                  <span style="font-size: 12px;">(4.8)</span>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card class="speaker-card">
+          <ion-card-header>
+            <ion-item class="item-img" >
+              <ion-avatar slot="start">
+                <img src="assets/img/salon/lavish.JPG">
+              </ion-avatar>
+              <ion-label>
+                <h2>Lavish Salon</h2>
+                <p>Goukuldham Goregaon East</p>
+                <div style="float: left;font-size: 12px;">600 M </div><div style="float: right;"  class="star-rating">
+                  <ion-icon 
+                    *ngFor="let star of stars; let i = index" 
+                    [name]="i < rating ? 'star' : 'star-outline'" 
+                    (click)="setRating(i + 1)">
+                  </ion-icon>
+                  <span style="font-size: 12px;">(4.5)</span>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card class="speaker-card">
+          <ion-card-header>
+            <ion-item class="item-img" >
+              <ion-avatar slot="start">
+                <img src="assets/img/salon/more.jpg">
+              </ion-avatar>
+              <ion-label>
+                <h2>Lucky Hair Cutting Salon</h2>
+                <p>Heena Gaurv Buld Goregaon East</p>
+                <div style="float: left;font-size: 12px;">200 M </div><div style="float: right;"  class="star-rating">
+                  <ion-icon 
+                    *ngFor="let star of stars; let i = index" 
+                    [name]="i < rating ? 'star' : 'star-outline'" 
+                    (click)="setRating(i + 1)">
+                  </ion-icon>
+                  <span style="font-size: 12px;">(4.8)</span>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+ </ion-content>
