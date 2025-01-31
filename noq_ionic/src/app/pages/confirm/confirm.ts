@@ -11,12 +11,12 @@ import { UserData } from '../../providers/user-data';
 //import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 
 @Component({
-  selector: 'page-booking',
-  templateUrl: 'booking.html',
-  styleUrls: ['./booking.scss'],
+  selector: 'page-confirm',
+  templateUrl: 'confirm.html',
+  styleUrls: ['./confirm.scss'],
  
 })
-export class BookingPage implements OnInit {
+export class ConfirmPage implements OnInit {
   /*slideOpts = {
     initialSlide: 0,
     speed: 400,
@@ -225,8 +225,8 @@ formatAddress(result: NativeGeocoderResult): string {
     fab.close();
   }
 
-  BookNow()
+  homepage()
   {
-    this.router.navigateByUrl('/confirm');
+    this.router.navigateByUrl('/home');
   }
 }

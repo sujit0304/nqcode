@@ -1,0 +1,70 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons *ngIf="!showSearchbar" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+   
+    <ion-title *ngIf="!ios && !showSearchbar">Confirm</ion-title>
+    <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText" (ionInput)="updateSchedule()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content fullscreen="true" style="--background: antiquewhite;">
+  <div class="login-logo">
+    <img src="assets/img/login_logo.png" alt="Ionic logo">
+  </div>
+  <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-card class="speaker-card">
+          <ion-row>
+            <ion-col style="text-align: center;"> <span style="font-size: 18px;font-weight: bold;">Thank You for Using NoQ </span></ion-col>
+          </ion-row>    
+          
+          
+         
+          <hr style="border-width: 1px;"> 
+          <ion-row>
+            <ion-col size="8" style="text-align: left; margin-left: 5px;"> 
+              <span style="font-size: 16px;font-weight: bold;">Your Booking Code </span>
+            </ion-col>
+            <ion-col style="text-align: right; margin-right: 5px;"> 
+              <span style="font-size: 16px;font-weight: bold;">5878</span>
+            </ion-col>
+          </ion-row> 
+          <ion-row>
+            <ion-col size="5" style="text-align: left; margin-left: 5px;"> 
+              <span style="font-size: 16px;font-weight: bold;">Time </span>
+            </ion-col>
+            <ion-col style="text-align: right; margin-right: 5px;"> 
+              <span style="font-size: 16px;font-weight: bold;">08:30 AM - 09:00 AM</span>
+            </ion-col>
+          </ion-row> 
+
+          <ion-row>
+            <ion-col size="8" style="text-align: left; margin-left: 5px;"> 
+              <span style="font-size: 16px;font-weight: bold;">Payable Amount </span>
+            </ion-col>
+            <ion-col style="text-align: right; margin-right: 5px;"> 
+              <span style="font-size: 16px;font-weight: bold;">Rs. 210 </span>
+            </ion-col>
+          </ion-row> 
+          <hr style="border-width: 1px;">
+          <ion-row>
+            <ion-col size="12" style="text-align: left; margin-left: 5px;">
+              <p><strong>Note :- Please share your code of your booking saloon on appoinment time.</strong></p>
+          </ion-col>
+          </ion-row>
+          
+          <hr style="border-width: 1px;">
+          <ion-row>
+            <ion-col size="4"></ion-col>
+            <ion-col size="4"> 
+              <ion-button (click)="homepage()" type="submit" expand="block">Ok</ion-button>
+            </ion-col>
+            <ion-col size="4"></ion-col>
+          </ion-row>     
+         </ion-card>
+      </ion-col>
+    </ion-row>
+    
+ </ion-content>
